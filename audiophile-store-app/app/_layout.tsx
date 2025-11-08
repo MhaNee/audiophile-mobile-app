@@ -2,13 +2,17 @@ import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
-    <Stack>
-      {/* Hide the header for the index (home) route */}
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      {/* Register other top-level screens so routes resolve from the Navbar */}
-      <Stack.Screen name="headphones" options={{ title: 'Headphones', headerShown: false }} />
-      <Stack.Screen name="speakers" options={{ title: 'Speakers', headerShown: false }} />
-      <Stack.Screen name="earphones" options={{ title: 'Earphones', headerShown: false }} />
+    <Stack
+      screenOptions={{
+        // Hide header for ALL screens in this stack
+        headerShown: false,
+      }}
+    >
+      {/* Screens still need to be declared for routing */}
+      <Stack.Screen name="index" />
+      <Stack.Screen name="headphones" />
+      <Stack.Screen name="speakers" />
+      <Stack.Screen name="earphones" />
     </Stack>
   );
 }

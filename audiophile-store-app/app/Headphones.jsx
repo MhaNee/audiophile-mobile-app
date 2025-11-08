@@ -1,5 +1,7 @@
 import React from 'react';
 import { ScrollView, View, Text, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
+import Navbar from './components/Navbar';
+
 
 const { width } = Dimensions.get('window');
 
@@ -39,6 +41,9 @@ const categories = [
 export default function HeadphonesScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 60 }}>
+     
+     <Navbar />
+     
       <Text style={styles.pageTitle}>HEADPHONES</Text>
 
       {/* Product Sections */}

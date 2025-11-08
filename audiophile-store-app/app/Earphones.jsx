@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
+import Footer from './components/Footer';
+import About from './components/About';
+import Navbar from './components/Navbar';
 
 export default function Earphones() {
   const router = useRouter();
@@ -8,6 +11,9 @@ export default function Earphones() {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       
+          <Navbar />
+    
+
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerText}>EARPHONES</Text>
@@ -65,40 +71,13 @@ export default function Earphones() {
         </TouchableOpacity>
       </View>
 
+    
       {/* About Section */}
-      <View style={styles.aboutSection}>
-        <Text style={styles.aboutTitle}>
-          BRINGING YOU THE <Text style={{ color: '#D87D4A' }}>BEST</Text> AUDIO GEAR
-        </Text>
-        <Text style={styles.aboutText}>
-          Located at the heart of New York City, Audiophile is the premier store for high-end
-          headphones, earphones, speakers, and audio accessories. Visit our showroom and luxury
-          demo rooms to experience the finest audio quality.
-        </Text>
-        {/* <Image
-          source={require('../../assets/shared/about.jpg')}
-          style={styles.aboutImage}
-          resizeMode="cover"
-        /> */}
-      </View>
+      <About />
 
       {/* Footer */}
-      <View style={styles.footer}>
-        <Text style={styles.footerLogo}>audiophile</Text>
-        <View style={styles.footerLinks}>
-          <Text style={styles.footerLink}>Home</Text>
-          <Text style={styles.footerLink}>Headphones</Text>
-          <Text style={styles.footerLink}>Speakers</Text>
-          <Text style={styles.footerLink}>Earphones</Text>
-        </View>
-        <Text style={styles.footerText}>
-          Audiophile is your one-stop destination for premium audio products. Visit our store or
-          demo facility to experience sound perfection.
-        </Text>
-        <Text style={styles.footerCopyright}>
-          Copyright 2021. All Rights Reserved
-        </Text>
-      </View>
+
+     <Footer />
 
     </ScrollView>
   );

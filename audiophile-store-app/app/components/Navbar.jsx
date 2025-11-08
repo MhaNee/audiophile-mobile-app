@@ -53,6 +53,14 @@ export default function Navbar() {
       {/* Dropdown menu */}
       {menuOpen && (
         <Animated.View style={[styles.dropdown, { transform: [{ translateY: dropdownTranslate }] }]}>
+         
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => { toggleMenu(); router.push('/'); }}
+          >
+            <Text style={styles.menuText}>HOME</Text>
+          </TouchableOpacity>
+         
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => { toggleMenu(); router.push('/Headphones'); }}

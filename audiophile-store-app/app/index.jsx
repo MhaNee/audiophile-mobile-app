@@ -11,6 +11,10 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Navbar from './components/Navbar';
+import About from './components/About';
+import Footer from './components/Footer';
+import Category from './components/Category';
+
 
 const { width } = Dimensions.get('window');
 
@@ -19,7 +23,9 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
+
       <Navbar />
+
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* Hero Section */}
         <View style={styles.hero}>
@@ -52,64 +58,8 @@ export default function HomeScreen() {
         </View>
 
         {/* Category Cards */}
-        <View style={styles.categorySection}>
-          {/* Headphones */}
-          <TouchableOpacity
-            style={styles.categoryCard}
-            onPress={() => navigation.navigate('Headphones')}
-          >
-            {/*
-            <Image
-              source={require('../../assets/shared/desktop/image-category-thumbnail-headphones.png')}
-              style={styles.categoryImage}
-              resizeMode="contain"
-            />
-            */}
-            <Text style={styles.categoryName}>HEADPHONES</Text>
-            <View style={styles.shopLink}>
-              <Text style={styles.shopText}>SHOP</Text>
-              <Icon name="chevron-forward" size={16} color="#f97316" />
-            </View>
-          </TouchableOpacity>
+        <Category />
 
-          {/* Speakers */}
-          <TouchableOpacity
-            style={styles.categoryCard}
-            onPress={() => navigation.navigate('Speakers')}
-          >
-            {/*
-            <Image
-              source={require('../../assets/shared/desktop/image-category-thumbnail-speakers.png')}
-              style={styles.categoryImage}
-              resizeMode="contain"
-            />
-            */}
-            <Text style={styles.categoryName}>SPEAKERS</Text>
-            <View style={styles.shopLink}>
-              <Text style={styles.shopText}>SHOP</Text>
-              <Icon name="chevron-forward" size={16} color="#f97316" />
-            </View>
-          </TouchableOpacity>
-
-          {/* Earphones */}
-          <TouchableOpacity
-            style={styles.categoryCard}
-            onPress={() => navigation.navigate('Earphones')}
-          >
-            {/*
-            <Image
-              source={require('../../assets/shared/desktop/image-category-thumbnail-earphones.png')}
-              style={styles.categoryImage}
-              resizeMode="contain"
-            />
-            */}
-            <Text style={styles.categoryName}>EARPHONES</Text>
-            <View style={styles.shopLink}>
-              <Text style={styles.shopText}>SHOP</Text>
-              <Icon name="chevron-forward" size={16} color="#f97316" />
-            </View>
-          </TouchableOpacity>
-        </View>
 
         {/* ZX9 Speaker Feature - Orange Background */}
         <View style={styles.zx9Section}>
@@ -191,71 +141,11 @@ export default function HomeScreen() {
         </View>
 
         {/* About Section */}
-        <View style={styles.aboutSection}>
-          {/*
-          <Image
-            source={require('../../assets/shared/mobile/image-best-gear.jpg')}
-            style={styles.aboutImage}
-            resizeMode="cover"
-          />
-          */}
-          <Text style={styles.aboutTitle}>
-            BRINGING YOU THE{'\n'}
-            <Text style={styles.aboutHighlight}>BEST</Text> AUDIO GEAR
-          </Text>
-          <Text style={styles.aboutDescription}>
-            Located at the heart of New York City, Audiophile is the premier
-            store for high end headphones, earphones, speakers, and audio
-            accessories. We have a large showroom and luxury demonstration room
-            available for you to browse and experience a wide range of our
-            products. Stop by our store to meet some of the fantastic people who
-            make Audiophile the best place to buy your portable audio equipment.
-          </Text>
-        </View>
+     <About />
 
         {/* Footer */}
-        <View style={styles.footer}>
-          <View style={styles.footerBar} />
-          <Text style={styles.footerLogo}>audiophile</Text>
-          
-          <View style={styles.footerLinks}>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-              <Text style={styles.footerLink}>HOME</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Headphones')}>
-              <Text style={styles.footerLink}>HEADPHONES</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Speakers')}>
-              <Text style={styles.footerLink}>SPEAKERS</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Earphones')}>
-              <Text style={styles.footerLink}>EARPHONES</Text>
-            </TouchableOpacity>
-          </View>
+        <Footer />
 
-          <Text style={styles.footerDescription}>
-            Audiophile is an all in one stop to fulfill your audio needs. We're a
-            small team of music lovers and sound specialists who are devoted to
-            helping you get the most out of personal audio. Come and visit our
-            demo facility - we're open 7 days a week.
-          </Text>
-
-          <Text style={styles.footerCopyright}>
-            Copyright 2021. All Rights Reserved
-          </Text>
-
-          <View style={styles.socialIcons}>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Icon name="logo-facebook" size={24} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Icon name="logo-twitter" size={24} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Icon name="logo-instagram" size={24} color="#fff" />
-            </TouchableOpacity>
-          </View>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
