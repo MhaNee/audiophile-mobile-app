@@ -77,7 +77,7 @@ export default function HomeScreen() {
             <TouchableOpacity
               style={styles.zx9Button}
 
-              onPress={() => { router.push('/earphones/yx1'); }}
+              onPress={() => { router.push('/speakers/zx9'); }}
 
             >
               <Text style={styles.zx9ButtonText}>SEE PRODUCT</Text>
@@ -98,7 +98,7 @@ export default function HomeScreen() {
             <Text style={styles.zx7Title}>ZX7 SPEAKER</Text>
             <TouchableOpacity
               style={styles.zx7Button}
-              onPress={() => { router.push('/earphones/yx1'); }}
+              onPress={() => { router.push('/speakers/zx7'); }}
 
             >
               <Text style={styles.zx7ButtonText}>SEE PRODUCT</Text>

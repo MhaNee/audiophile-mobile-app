@@ -1,5 +1,5 @@
-// src/screens/ProductDetailScreen.js
-import React, { useState } from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
+import React from 'react'
 import {
   View,
   Text,
@@ -9,171 +9,42 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Navbar from '../components/Navbar';
-import heroImg from '../assets/xx59.jpg'
-import About from '../components/About'
-import Footer from '../components/Footer'
-import Categories from '../components/Category';
 
 
 
-const { width } = Dimensions.get('window');
 
-export default function ProductDetailScreen() {
-  const navigation = useNavigation();
-  const [quantity, setQuantity] = useState(1);
-
-  const incrementQuantity = () => setQuantity((q) => q + 1);
-  const decrementQuantity = () => setQuantity((q) => Math.max(1, q - 1));
+export default function Intrested() {
 
   const relatedProducts = [
     {
       id: 1,
+      name: 'ZX7 SPEAKER',
+      image: require('@/app/assets/zx7(1).jpg'),
+    },
+    {
+      id: 2,
       name: 'XX99 MARK I',
       image: require('@/app/assets/xx99mark1(1).jpg'),
     },
     {
-      id: 2,
+      id: 3,
       name: 'XX59',
       image: require('@/app/assets/xx59(1).jpg'),
-    },
-    {
-      id: 3,
-      name: 'ZX9 SPEAKER',
-      image: require('@/app/assets/zx9(1).jpg'),
     },
   ];
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <Navbar />
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        {/* Back Button */}
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={styles.backText}>Go Back</Text>
-        </TouchableOpacity>
-
-        {/* Product Image */}
-        <View style={styles.productImageContainer}>
-          <Image
-            source={heroImg}
-            style={styles.productImage}
-            resizeMode="cover"
-          />
-        </View>
-
-        {/* Product Info */}
-        <View style={styles.productInfo}>
-          <Text style={styles.newProduct}>NEW PRODUCT</Text>
-          <Text style={styles.productName}>XX59 {'\n'}HEADPHONES</Text>
-          <Text style={styles.productDescription}>
-            Tailor your listening experience with bespoke dynamic drivers from the
-            new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even
-            in noisy environments with its active noise cancellation feature.
-          </Text>
-          <Text style={styles.productPrice}>$ 899</Text>
-
-          {/* Quantity and Add to Cart */}
-          <View style={styles.actionRow}>
-            <View style={styles.quantityControl}>
-              <TouchableOpacity
-                onPress={decrementQuantity}
-                style={styles.quantityButton}
-              >
-                <Text style={styles.quantityButtonText}>-</Text>
-              </TouchableOpacity>
-              <Text style={styles.quantityText}>{quantity}</Text>
-              <TouchableOpacity
-                onPress={incrementQuantity}
-                style={styles.quantityButton}
-              >
-                <Text style={styles.quantityButtonText}>+</Text>
-              </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity style={styles.addButton}>
-              <Text style={styles.addButtonText}>ADD TO CART</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Features Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>FEATURES</Text>
-          <Text style={styles.featureText}>
-            Experience unrivalled stereo sound thanks to innovative acoustic
-            technology. With improved ergonomics designed for long listening
-            sessions, these earphones deliver comfort and style.
-          </Text>
-          <Text style={styles.featureText}>
-            A transmission delay of 2.2ms while maintaining a connection to up to
-            30m means you can enjoy high quality playback without lag. Proprietary
-            drivers ensure clear sound reproduction at all levels. Powered by
-            rechargeable batteries, enjoy 8 hours of uninterrupted listening on a
-            single charge.
-          </Text>
-        </View>
-
-        {/* In The Box Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>IN THE BOX</Text>
-          <View style={styles.boxItem}>
-            <Text style={styles.boxQuantity}>2x</Text>
-            <Text style={styles.boxItemName}>Earphone Unit</Text>
-          </View>
-          <View style={styles.boxItem}>
-            <Text style={styles.boxQuantity}>6x</Text>
-            <Text style={styles.boxItemName}>Multi-size Earplugs</Text>
-          </View>
-          <View style={styles.boxItem}>
-            <Text style={styles.boxQuantity}>1x</Text>
-            <Text style={styles.boxItemName}>User Manual</Text>
-          </View>
-          <View style={styles.boxItem}>
-            <Text style={styles.boxQuantity}>1x</Text>
-            <Text style={styles.boxItemName}>USB-C Charging Cable</Text>
-          </View>
-          <View style={styles.boxItem}>
-            <Text style={styles.boxQuantity}>1x</Text>
-            <Text style={styles.boxItemName}>Travel Pouch</Text>
-          </View>
-        </View>
-
-        {/* Gallery */}
-        <View style={styles.gallery}>
-          <Image
-            source={require('@/app/assets/image-gallery-5(2).jpg')}
-            style={styles.galleryImageSmall}
-            resizeMode="cover"
-          />
-          <Image
-            source={require('@/app/assets/image-gallery-5(3).jpg')}
-            style={styles.galleryImageSmall}
-            resizeMode="cover"
-          />
-          <Image
-            source={require('@/app/assets/image-gallery-5(1).jpg')}
-            style={styles.galleryImageLarge}
-            resizeMode="cover"
-          />
-        </View>
-
-          {/* You May Also Like */}
-              <View style={styles.relatedSection}>
-                <Text style={styles.relatedTitle}>YOU MAY ALSO LIKE</Text>
-                {relatedProducts.map((product) => (
+    <View>
+         {/* You May Also Like */}
+             <View style={styles.relatedSection}>
+               <Text style={styles.relatedTitle}>YOU MAY ALSO LIKE</Text>
+               {relatedProducts.map((product) => (
                  <View key={product.id} style={styles.relatedProduct}>
-                   <Image
+                   {/* <Image
                      source={product.image}
                      style={styles.relatedImage}
                      resizeMode="cover"
-                   />
+                   /> */}
                    <Text style={styles.relatedName}>{product.name}</Text>
                    <TouchableOpacity style={styles.relatedButton}>
                      <Text style={styles.relatedButtonText}>SEE PRODUCT</Text>
@@ -183,18 +54,56 @@ export default function ProductDetailScreen() {
              </View>
      
              {/* Category Cards */}
-             <Categories /> 
-    
-        {/* About Section */}
-        <About />
-
-        {/* Footer */}
-        <Footer />
-
-      </ScrollView>
-    </SafeAreaView>
-  );
+             <View style={styles.categorySection}>
+               <TouchableOpacity
+                 style={styles.categoryCard}
+                 onPress={() => navigation.navigate('Headphones')}
+               >
+                 {/* <Image
+                   source={require('../../assets/shared/desktop/image-category-thumbnail-headphones.png')}
+                   style={styles.categoryImage}
+                   resizeMode="contain"
+                 /> */}
+                 <Text style={styles.categoryName}>HEADPHONES</Text>
+                 <View style={styles.shopLink}>
+                   <Text style={styles.shopText}>SHOP</Text>
+                   <Icon name="chevron-forward" size={16} color="#D87D4A" />
+                 </View>
+               </TouchableOpacity>
+     
+               <TouchableOpacity
+                 style={styles.categoryCard}
+                 onPress={() => navigation.navigate('Speakers')}
+               >
+     
+                 <Text style={styles.categoryName}>SPEAKERS</Text>
+                 <View style={styles.shopLink}>
+                   <Text style={styles.shopText}>SHOP</Text>
+                   <Icon name="chevron-forward" size={16} color="#D87D4A" />
+                 </View>
+               </TouchableOpacity>
+     
+               <TouchableOpacity
+                 style={styles.categoryCard}
+                 onPress={() => navigation.navigate('Earphones')}
+               >
+                 {/* <Image
+                   source={require('../../assets/shared/desktop/image-category-thumbnail-earphones.png')}
+                   style={styles.categoryImage}
+                   resizeMode="contain"
+                 /> */}
+                 <Text style={styles.categoryName}>EARPHONES</Text>
+                 <View style={styles.shopLink}>
+                   <Text style={styles.shopText}>SHOP</Text>
+                   <Icon name="chevron-forward" size={16} color="#D87D4A" />
+                 </View>
+               </TouchableOpacity>
+             </View>
+     
+    </View>
+  )
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -388,7 +297,7 @@ const styles = StyleSheet.create({
   },
   relatedImage: {
     width: '100%',
-    height: 250,
+    height: 120,
     borderRadius: 8,
     marginBottom: 32,
   },

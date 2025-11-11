@@ -34,7 +34,9 @@ export default function Speakers() {
           system that offers truly wireless connectivity – creating new possibilities for more
           pleasing and practical audio setups.
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button}
+          onPress={() => { router.push('/speakers/zx9'); }}
+>
           <Text style={styles.buttonText}>SEE PRODUCT</Text>
         </TouchableOpacity>
       </View>
@@ -52,7 +54,9 @@ export default function Speakers() {
           high-end audio components that represent the top of the line powered speakers for home or
           studio use.
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button}
+          onPress={() => { router.push('/speakers/zx9'); }}
+>
           <Text style={styles.buttonText}>SEE PRODUCT</Text>
         </TouchableOpacity>
       </View>

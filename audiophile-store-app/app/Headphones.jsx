@@ -1,4 +1,5 @@
 import React from 'react';
+import { router } from 'expo-router';
 import { ScrollView, View, Text, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
 import Navbar from './components/Navbar';
 import Category from './components/Category';
@@ -10,16 +11,16 @@ const { width } = Dimensions.get('window');
 
 const products = [
   {
-    id: 'xx99-mark-ii',
+    id: 'xx99mark2',
     title: 'XX99 MARK II HEADPHONES',
     description: 'The new XX99 Mark II headphones are the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.',
-    image: require('@/app/assets/xx99mark1.jpg'), 
+    image: require('@/app/assets/xx99mark2.jpg'), 
   },
   {
-    id: 'xx99-mark-i',
+    id: 'xx99mark1',
     title: 'XX99 MARK I HEADPHONES',
     description: 'As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate sound reproduction for audiophiles, mixing engineers, and music enthusiasts alike.',
-    image: require('@/app/assets/xx99mark2.jpg'), 
+    image: require('@/app/assets/xx99mark1.jpg'), 
   },
   {
     id: 'xx59',
@@ -48,7 +49,8 @@ export default function HeadphonesScreen() {
           <Image source={product.image} style={styles.productImage} resizeMode="contain" />
           <Text style={styles.productTitle}>{product.title}</Text>
           <Text style={styles.productDescription}>{product.description}</Text>
-          <TouchableOpacity style={styles.ctaButton}>
+          <TouchableOpacity style={styles.ctaButton}
+            onPress={() => { router.push(`/headphones/${product.id}`) }}>
             <Text style={styles.ctaButtonText}>SEE PRODUCT</Text>
           </TouchableOpacity>
         </View>

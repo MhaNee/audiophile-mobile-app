@@ -1,4 +1,4 @@
-
+// src/screens/ProductDetailScreen.js
 import React, { useState } from 'react';
 import {
   View,
@@ -13,6 +13,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Navbar from '../components/Navbar';
+import heroImg from '../assets/yx1(1).jpg'
+import About from '../components/About'
+import Footer from '../components/Footer'
+import Categories from '../components/Category';
+
+
 
 const { width } = Dimensions.get('window');
 
@@ -27,17 +33,17 @@ export default function ProductDetailScreen() {
     {
       id: 1,
       name: 'XX99 MARK I',
-      // image: require('../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg'),
+      image: require('@/app/assets/xx99mark1(1).jpg'),
     },
     {
       id: 2,
       name: 'XX59',
-      // image: require('../../assets/shared/mobile/image-xx59-headphones.jpg'),
+      image: require('@/app/assets/xx59(1).jpg'),
     },
     {
       id: 3,
       name: 'ZX9 SPEAKER',
-      // image: require('../../assets/shared/mobile/image-zx9-speaker.jpg'),
+      image: require('@/app/assets/zx9(1).jpg'),
     },
   ];
 
@@ -55,23 +61,23 @@ export default function ProductDetailScreen() {
 
         {/* Product Image */}
         <View style={styles.productImageContainer}>
-           {/* <Image
-             source={require('../../assets/product-yx1-earphones/mobile/image-product.jpg')}
-             style={styles.productImage}
-             resizeMode="cover"
-           /> */}
+          <Image
+            source={heroImg}
+            style={styles.productImage}
+            resizeMode="cover"
+          />
         </View>
 
         {/* Product Info */}
         <View style={styles.productInfo}>
           <Text style={styles.newProduct}>NEW PRODUCT</Text>
-          <Text style={styles.productName}>YX1 WIRELESS{'\n'}EARPHONES</Text>
+          <Text style={styles.productName}>YX1 WIRELESS {'\n'} EARPHONES</Text>
           <Text style={styles.productDescription}>
             Tailor your listening experience with bespoke dynamic drivers from the
             new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even
             in noisy environments with its active noise cancellation feature.
           </Text>
-          <Text style={styles.productPrice}>$ 599</Text>
+          <Text style={styles.productPrice}>$ 2,999</Text>
 
           {/* Quantity and Add to Cart */}
           <View style={styles.actionRow}>
@@ -140,157 +146,51 @@ export default function ProductDetailScreen() {
         </View>
 
         {/* Gallery */}
-        {/* <View style={styles.gallery}>
+        <View style={styles.gallery}>
           <Image
-            source={require('../../assets/product-yx1-earphones/mobile/image-gallery-1.jpg')}
+            source={require('@/app/assets/image-gallery-3(2).jpg')}
             style={styles.galleryImageSmall}
             resizeMode="cover"
           />
           <Image
-            source={require('../../assets/product-yx1-earphones/mobile/image-gallery-2.jpg')}
+            source={require('@/app/assets/image-gallery-3(3).jpg')}
             style={styles.galleryImageSmall}
             resizeMode="cover"
           />
           <Image
-            source={require('../../assets/product-yx1-earphones/mobile/image-gallery-3.jpg')}
+            source={require('@/app/assets/image-gallery-3(1).jpg')}
             style={styles.galleryImageLarge}
             resizeMode="cover"
           />
-        </View> */}
-
-        {/* You May Also Like */}
-        <View style={styles.relatedSection}>
-          <Text style={styles.relatedTitle}>YOU MAY ALSO LIKE</Text>
-          {relatedProducts.map((product) => (
-            <View key={product.id} style={styles.relatedProduct}>
-              {/* <Image
-                source={product.image}
-                style={styles.relatedImage}
-                resizeMode="cover"
-              /> */}
-              <Text style={styles.relatedName}>{product.name}</Text>
-              <TouchableOpacity style={styles.relatedButton}>
-                <Text style={styles.relatedButtonText}>SEE PRODUCT</Text>
-              </TouchableOpacity>
-            </View>
-          ))}
         </View>
 
-        {/* Category Cards */}
-        {/* <View style={styles.categorySection}>
-          <TouchableOpacity
-            style={styles.categoryCard}
-            onPress={() => navigation.navigate('Headphones')}
-          >
-            <Image
-              source={require('../../assets/shared/desktop/image-category-thumbnail-headphones.png')}
-              style={styles.categoryImage}
-              resizeMode="contain"
-            />
-            <Text style={styles.categoryName}>HEADPHONES</Text>
-            <View style={styles.shopLink}>
-              <Text style={styles.shopText}>SHOP</Text>
-              <Icon name="chevron-forward" size={16} color="#D87D4A" />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.categoryCard}
-            onPress={() => navigation.navigate('Speakers')}
-          >
-            <Image
-              source={require('../../assets/shared/desktop/image-category-thumbnail-speakers.png')}
-              style={styles.categoryImage}
-              resizeMode="contain"
-            />
-            <Text style={styles.categoryName}>SPEAKERS</Text>
-            <View style={styles.shopLink}>
-              <Text style={styles.shopText}>SHOP</Text>
-              <Icon name="chevron-forward" size={16} color="#D87D4A" />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.categoryCard}
-            onPress={() => navigation.navigate('Earphones')}
-          >
-            <Image
-              source={require('../../assets/shared/desktop/image-category-thumbnail-earphones.png')}
-              style={styles.categoryImage}
-              resizeMode="contain"
-            />
-            <Text style={styles.categoryName}>EARPHONES</Text>
-            <View style={styles.shopLink}>
-              <Text style={styles.shopText}>SHOP</Text>
-              <Icon name="chevron-forward" size={16} color="#D87D4A" />
-            </View>
-          </TouchableOpacity>
-        </View> */}
-
+          {/* You May Also Like */}
+              <View style={styles.relatedSection}>
+                <Text style={styles.relatedTitle}>YOU MAY ALSO LIKE</Text>
+                {relatedProducts.map((product) => (
+                 <View key={product.id} style={styles.relatedProduct}>
+                   <Image
+                     source={product.image}
+                     style={styles.relatedImage}
+                     resizeMode="cover"
+                   />
+                   <Text style={styles.relatedName}>{product.name}</Text>
+                   <TouchableOpacity style={styles.relatedButton}>
+                     <Text style={styles.relatedButtonText}>SEE PRODUCT</Text>
+                   </TouchableOpacity>
+                 </View>
+               ))}
+             </View>
+     
+             {/* Category Cards */}
+             <Categories /> 
+    
         {/* About Section */}
-        {/* <View style={styles.aboutSection}>
-          <Text style={styles.aboutTitle}>
-            BRINGING YOU THE{'\n'}
-            <Text style={styles.aboutHighlight}>BEST</Text> AUDIO GEAR
-          </Text>
-          <Text style={styles.aboutDescription}>
-            Located at the heart of New York City, Audiophile is the premier
-            store for high end headphones, earphones, speakers, and audio
-            accessories. We have a large showroom and luxury demonstration room
-            available for you to browse and experience a wide range of our
-            products. Stop by our store to meet some of the fantastic people who
-            make Audiophile the best place to buy your portable audio equipment.
-          </Text>
-          <Image
-            source={require('../../assets/shared/mobile/image-best-gear.jpg')}
-            style={styles.aboutImage}
-            resizeMode="cover"
-          />
-        </View> */}
+        <About />
 
         {/* Footer */}
-        {/* <View style={styles.footer}>
-          <View style={styles.footerBar} />
-          <Text style={styles.footerLogo}>audiophile</Text>
+        <Footer />
 
-          <View style={styles.footerLinks}>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-              <Text style={styles.footerLink}>HOME</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Headphones')}>
-              <Text style={styles.footerLink}>HEADPHONES</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Speakers')}>
-              <Text style={styles.footerLink}>SPEAKERS</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Earphones')}>
-              <Text style={styles.footerLink}>EARPHONES</Text>
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.footerDescription}>
-            Audiophile is an all in one stop to fulfill your audio needs. We're a
-            small team of music lovers and sound specialists who are devoted to
-            helping you get the most out of personal audio. Come and visit our
-            demo facility - we're open 7 days a week.
-          </Text>
-
-          <Text style={styles.footerCopyright}>
-            Copyright 2021. All Rights Reserved
-          </Text>
-
-          <View style={styles.socialIcons}>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Icon name="logo-facebook" size={24} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Icon name="logo-twitter" size={24} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Icon name="logo-instagram" size={24} color="#fff" />
-            </TouchableOpacity>
-          </View>
-        </View> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -488,7 +388,7 @@ const styles = StyleSheet.create({
   },
   relatedImage: {
     width: '100%',
-    height: 120,
+    height: 250,
     borderRadius: 8,
     marginBottom: 32,
   },
