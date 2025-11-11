@@ -17,6 +17,7 @@ import heroImg from '../assets/xx99mark1.jpg'
 import About from '../components/About'
 import Footer from '../components/Footer'
 import Categories from '../components/Category';
+import { useCart } from '../context/CartContext';
 
 
 
@@ -25,6 +26,7 @@ const { width } = Dimensions.get('window');
 export default function ProductDetailScreen() {
   const navigation = useNavigation();
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   const incrementQuantity = () => setQuantity((q) => q + 1);
   const decrementQuantity = () => setQuantity((q) => Math.max(1, q - 1));
@@ -97,7 +99,15 @@ export default function ProductDetailScreen() {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.addButton}>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={() =>
+                addToCart(
+                  { id: 'xx99-mark-1', name: 'XX99 MARK I HEADPHONES', price: 1750 },
+                  quantity
+                )
+              }
+            >
               <Text style={styles.addButtonText}>ADD TO CART</Text>
             </TouchableOpacity>
           </View>

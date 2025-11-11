@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useCart } from '../context/CartContext';
 
 const { width } = Dimensions.get('window');
 
@@ -10,6 +11,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnim] = useState(new Animated.Value(0));
   const [cartOpen, setCartOpen] = useState(false);
+  const { cartItems, totalItems, totalPrice, clearCart, removeFromCart } = useCart();
 
   const toggleMenu = () => {
     Animated.timing(menuAnim, {
@@ -41,12 +43,15 @@ export default function Navbar() {
 
         {/* Right icons */}
         <View style={styles.rightIcons}>
-          {/* Cart icon */}
+          {/* Cart icon with badge */}
           <TouchableOpacity style={styles.iconButton} onPress={() => setCartOpen(true)}>
             <Icon name="cart-outline" size={22} color="#000" />
+            {totalItems > 0 && (
+              <View style={styles.cartBadge}>
+                <Text style={styles.cartBadgeText}>{totalItems}</Text>
+              </View>
+            )}
           </TouchableOpacity>
-
-         
         </View>
       </View>
 
@@ -94,7 +99,29 @@ export default function Navbar() {
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Your Cart</Text>
-            <Text style={styles.modalText}>Your cart is empty.</Text>
+            {cartItems.length === 0 ? (
+              <Text style={styles.modalText}>Your cart is empty.</Text>
+            ) : (
+              <View style={{ alignSelf: 'stretch' }}>
+                {cartItems.map((item) => (
+                  <View key={item.id} style={styles.cartItemRow}>
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.cartItemName}>{item.name}</Text>
+                      <Text style={styles.cartItemMeta}>Qty: {item.quantity} • ${item.price}</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => removeFromCart(item.id)} style={styles.removeButton}>
+                      <Text style={styles.removeButtonText}>Remove</Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
+                <View style={styles.cartFooter}>
+                  <Text style={styles.totalText}>Total: ${totalPrice.toLocaleString()}</Text>
+                  <TouchableOpacity onPress={clearCart} style={styles.clearButton}>
+                    <Text style={styles.clearButtonText}>Clear</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )}
             <TouchableOpacity style={styles.closeButton} onPress={() => setCartOpen(false)}>
               <Text style={styles.closeButtonText}>Close</Text>
             </TouchableOpacity>
@@ -132,6 +159,23 @@ const styles = StyleSheet.create({
     padding: 8,
     marginLeft: 12,
   },
+  cartBadge: {
+    position: 'absolute',
+    top: 2,
+    right: 2,
+    minWidth: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: '#D87D4A',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 3,
+  },
+  cartBadgeText: {
+    color: '#fff',
+    fontSize: 10,
+    fontWeight: '700',
+  },
   dropdown: {
     position: 'absolute',
     top: 64,
@@ -165,6 +209,55 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 24,
     alignItems: 'center',
+  },
+  cartItemRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
+  cartItemName: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#000',
+  },
+  cartItemMeta: {
+    fontSize: 13,
+    color: '#000',
+    opacity: 0.6,
+  },
+  removeButton: {
+    borderWidth: 1,
+    borderColor: '#000',
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 6,
+  },
+  removeButtonText: {
+    color: '#000',
+    fontWeight: '700',
+    fontSize: 12,
+  },
+  cartFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  totalText: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  clearButton: {
+    backgroundColor: '#000',
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 6,
+  },
+  clearButtonText: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 12,
   },
   modalTitle: {
     fontSize: 18,

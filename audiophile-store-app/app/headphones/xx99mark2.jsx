@@ -1,22 +1,22 @@
 // src/screens/ProductDetailScreen.js
-import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
   Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Navbar from '../components/Navbar';
-import heroImg from '../assets/xx99mark2.jpg'
-import About from '../components/About'
-import Footer from '../components/Footer'
+import heroImg from '../assets/xx99mark2.jpg';
+import About from '../components/About';
 import Categories from '../components/Category';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import { useCart } from '../context/CartContext';
 
 
 
@@ -25,6 +25,7 @@ const { width } = Dimensions.get('window');
 export default function ProductDetailScreen() {
   const navigation = useNavigation();
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   const incrementQuantity = () => setQuantity((q) => q + 1);
   const decrementQuantity = () => setQuantity((q) => Math.max(1, q - 1));
@@ -97,7 +98,15 @@ export default function ProductDetailScreen() {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.addButton}>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={() =>
+                addToCart(
+                  { id: 'xx99-mark-2', name: 'XX99 MARK II HEADPHONES', price: 2999 },
+                  quantity
+                )
+              }
+            >
               <Text style={styles.addButtonText}>ADD TO CART</Text>
             </TouchableOpacity>
           </View>
